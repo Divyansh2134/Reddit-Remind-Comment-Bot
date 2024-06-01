@@ -20,9 +20,6 @@ reddit = praw.Reddit(
 )
 print(reddit.read_only)
 
-try:
-    for submission in reddit.subreddit("developerIndia").new(limit=10):
-        print(submission.title)
-
-except Exception as e:
-    print("Error:", e)
+for items in reddit.inbox.stream(skip_existing=False):
+    print(items.body)
+    print(items.subject)
